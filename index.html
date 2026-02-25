@@ -1,826 +1,370 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Comet Coin ($COMC)</title>
-  <meta name="description" content="Comet Coin ($COMC) — Early. Loud. Always building." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Social preview -->
-  <meta property="og:title" content="Comet Coin ($COMC)" />
-  <meta property="og:description" content="Early. Loud. Always building." />
-  <meta property="og:image" content="images/social-preview.png" />
-  <meta property="og:type" content="website" />
+<title>Comet Coin ($COMC)</title>
+<meta name="description" content="Comet Coin ($COMC) — Early. Loud. Always building.">
 
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.png" />
+<!-- Social preview -->
+<meta property="og:title" content="Comet Coin ($COMC)">
+<meta property="og:description" content="Early. Loud. Always building.">
+<meta property="og:image" content="https://vizorr.github.io/CometCoin/images/social-preview.png">
+<meta property="og:type" content="website">
 
-  <!-- ========= EASY EDIT LINK + TOKEN VARIABLES (EDIT THESE ONLY) ========= -->
-  <script>
-    const LINKS = {
-      BUY: "https://pump.fun/coin/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
-      PUMPFUN: "https://pump.fun/coin/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
-      DEXSCREENER: "https://dexscreener.com/solana/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
-      SOLSCAN: "https://solscan.io/token/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
-      TWITTER: "https://x.com/CometCoinCOMC",
-      DISCORD: "https://discord.gg/",
-      RULES: "#",
-      PINNED: "#",
-    };
+<link rel="icon" href="./images/favicon.png">
 
-    // Token used for live stats
-    const TOKEN_ADDRESS = "6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump";
+<script>
+const LINKS = {
+BUY: "https://pump.fun/coin/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
+DEXSCREENER: "https://dexscreener.com/solana/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
+SOLSCAN: "https://solscan.io/token/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
+TWITTER: "https://x.com/CometCoinCOMC",
+DISCORD: "https://discord.gg/"
+};
 
-    // Used only if FDV/marketcap missing (Dexscreener usually provides fdv)
-    const TOTAL_SUPPLY = 1000000000;
-  </script>
+const TOKEN_ADDRESS = "6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump";
+const TOTAL_SUPPLY = 1000000000;
+</script>
 
-  <style>
-    :root{
-      --bg:#050713;
-      --bg2:#0b1020;
-      --text:#ffffff;
-      --muted:#a9b3cf;
+<style>
 
-      --accent:#5aa2ff;
-      --accent2:#7cffda;
+:root{
+--bg:#050713;
+--text:#ffffff;
+--muted:#9aa4c7;
+--accent:#5aa2ff;
+--accent2:#7cffda;
+}
 
-      --glass: rgba(255,255,255,.06);
-      --glass2: rgba(255,255,255,.04);
-      --stroke: rgba(255,255,255,.12);
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+color:var(--text);
 
-      --shadow: 0 18px 70px rgba(0,0,0,.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+background:
+linear-gradient(rgba(5,7,19,.92),rgba(5,7,19,.96)),
+url("./images/Background.png");
 
-      --radius: 18px;
-      --radius2: 14px;
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
 
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    }
+.container{
+max-width:1400px;
+margin:auto;
+padding:40px;
+}
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+/* NAV */
 
-    /* ✅ FIX: remove the mid-page "split gradient" band by moving the whole
-       multi-layer background to a fixed pseudo-element (bulletproof). */
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background: #050713;
-      overflow-x:hidden;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:60px;
+}
 
-      background-image:
-        radial-gradient(900px 500px at 15% 10%, rgba(90,162,255,.22), transparent 55%),
-        radial-gradient(700px 420px at 85% 20%, rgba(124,255,218,.12), transparent 60%),
-        linear-gradient(rgba(5,7,19,.88), rgba(5,7,19,.94)),
-        url("images/Background.png");
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:700;
+font-size:20px;
+}
 
-      background-size: auto, auto, auto, cover;
-      background-position: center, center, center, center;
-      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+.logo img{
+width:42px;
+}
 
-      /* Helps some GPUs avoid banding artifacts */
-      transform: translateZ(0);
-      will-change: transform;
-    }
+nav{
+display:flex;
+gap:30px;
+}
 
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration:none; }
+nav a{
+color:var(--muted);
+text-decoration:none;
+}
 
-    /* Wider page + less cramped */
-    .container{
-      max-width: 1480px;
-      margin: 0 auto;
-      padding: 28px clamp(18px, 3vw, 52px) 44px;
-    }
+nav a:hover{
+color:white;
+}
 
-    /* Top fade for readability */
-    .topFade{
-      position:fixed;
-      top:0; left:0; right:0;
-      height:140px;
-      pointer-events:none;
-      background: linear-gradient(to bottom, rgba(5,7,19,.95), rgba(5,7,19,0));
-      z-index:1;
-    }
+/* HERO */
 
-    /* NAV */
-    header{
-      position:sticky;
-      top:0;
-      z-index:5;
-      margin: 0 -9999px;
-      padding: 14px 9999px;
-      backdrop-filter: blur(12px);
-      background: rgba(5,7,19,.55);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
 
-    .navRow{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap: 18px;
-      max-width: 1480px;
-      margin: 0 auto;
-      padding: 0 clamp(18px, 3vw, 52px);
-    }
+.hero-text h1{
+font-size:64px;
+line-height:1.1;
+margin-bottom:20px;
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:800;
-      letter-spacing:.2px;
-      font-size:18px;
-      white-space:nowrap;
-    }
+background:linear-gradient(45deg,#fff,#7cffda);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-    .brand img{
-      width: 40px;
-      height: 40px;
-      filter: drop-shadow(0 0 14px rgba(90,162,255,.55));
-    }
+.hero-text p{
+font-size:18px;
+color:var(--muted);
+margin-bottom:20px;
+}
 
-    nav{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
+.hero img{
+width:100%;
+max-width:650px;
+}
 
-    nav a{
-      color:var(--muted);
-      font-weight:600;
-      font-size:14px;
-      padding:10px 12px;
-      border-radius: 12px;
-      transition: .18s ease;
-    }
-    nav a:hover{
-      color:#fff;
-      background: rgba(255,255,255,.06);
-    }
+.heroBanner img{
+width:100%;
+max-width:800px;
+margin-top:20px;
+}
 
-    .navCtas{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:flex-end;
-      white-space:nowrap;
-    }
+/* BUTTON */
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight:800;
-      font-size:14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      box-shadow: var(--shadow2);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      cursor:pointer;
-    }
-    .btn:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.20);
-    }
-    .btn.primary{
-      color:#0b1020;
-      border-color: rgba(90,162,255,.45);
-      background: linear-gradient(45deg, var(--accent), var(--accent2));
-      box-shadow: 0 18px 70px rgba(90,162,255,.22);
-    }
-    .btn.primary:hover{
-      box-shadow: 0 22px 90px rgba(90,162,255,.32);
-    }
+.btn{
+display:inline-block;
+padding:14px 24px;
+border-radius:12px;
+background:linear-gradient(45deg,var(--accent),var(--accent2));
+color:black;
+font-weight:700;
+text-decoration:none;
+margin-right:10px;
+}
 
-    /* HERO */
-    .hero{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items:center;
-      gap: 34px;
-      padding-top: 34px;
-      min-width: 0; /* FIX: prevents grid text clipping */
-    }
+/* LIVE STATS */
 
-    .heroText{
-      min-width:0; /* FIX: prevents h1 cutoff */
-    }
+.liveStats{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
 
-    .heroText h1{
-      font-size: clamp(38px, 4.1vw, 68px);
-      line-height: 1.06;
-      margin: 0 0 14px;
-      letter-spacing: -0.8px;
-      padding-right: 2px; /* tiny safety to avoid visual clipping */
-      text-wrap: balance;  /* nicer wrapping */
-      background: linear-gradient(45deg,#ffffff,#7cffda);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+.stat{
+background:rgba(255,255,255,.05);
+padding:15px;
+border-radius:12px;
+min-width:200px;
+}
 
-    .heroText p{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-      max-width: 62ch;
-    }
+.stat span{
+font-size:12px;
+color:var(--muted);
+}
 
-    .heroBadges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin: 18px 0 22px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: #d7e3ff;
-      font-size: 12px;
-      font-weight: 700;
-      backdrop-filter: blur(10px);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.2));
-      box-shadow: 0 0 14px rgba(124,255,218,.5);
-    }
+.stat b{
+font-size:18px;
+display:block;
+margin-top:4px;
+}
 
-    .heroCtas{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top: 6px;
-    }
+/* SECTIONS */
 
-    /* LIVE STATS */
-    .liveStats{
-      display:flex;
-      gap:12px;
-      margin-top:14px;
-      flex-wrap:wrap;
-    }
-    .stat{
-      padding: 10px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow2);
-      min-width: 190px;
-    }
-    .stat span{
-      display:block;
-      font-size:12px;
-      color: var(--muted);
-      margin-bottom: 2px;
-      font-weight:700;
-    }
-    .stat b{
-      display:block;
-      font-size:18px;
-      letter-spacing:-0.2px;
-    }
-    .stat small{
-      display:block;
-      margin-top: 4px;
-      color: rgba(255,255,255,.55);
-      font-size: 11px;
-    }
+.section{
+margin-top:100px;
+}
 
-    .heroArt{
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      position:relative;
-      min-height: 360px;
-      min-width:0;
-    }
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
 
-    .heroArt img{
-      width: 100%;
-      max-width: 720px;
-      filter:
-        drop-shadow(0 0 40px rgba(90,162,255,.35))
-        drop-shadow(0 0 90px rgba(124,255,218,.18));
-      animation: float 6s ease-in-out infinite;
-      border-radius: 24px;
-    }
+.card{
+background:rgba(255,255,255,.05);
+padding:20px;
+border-radius:12px;
+}
 
-    @keyframes float{
-      0%,100%{ transform: translateY(0); }
-      50%{ transform: translateY(-16px); }
-    }
+footer{
+margin-top:100px;
+color:#777;
+}
 
-    .heroBanner{
-      margin-top: 22px;
-      display:flex;
-      justify-content:flex-start;
-    }
-    .heroBanner img{
-      width: min(980px, 100%);
-      height: auto;
-      filter: drop-shadow(0 10px 28px rgba(0,0,0,.55));
-      display:block;
-    }
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;}
+.grid{grid-template-columns:1fr;}
+.hero-text h1{font-size:42px;}
+}
 
-    /* SECTIONS */
-    .section{
-      margin-top: 92px;
-    }
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom: 18px;
-    }
-    .section h2{
-      margin:0;
-      font-size: 34px;
-      letter-spacing: -0.4px;
-    }
-    .sectionSub{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 70ch;
-    }
-
-    /* Cards */
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card{
-      position:relative;
-      padding: 18px 18px 16px;
-      border-radius: var(--radius);
-      background:
-        radial-gradient(600px 200px at 20% 10%, rgba(90,162,255,.14), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      min-height: 128px;
-    }
-
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(700px 200px at 10% 0%, rgba(124,255,218,.10), transparent 55%);
-      opacity:.85;
-      pointer-events:none;
-    }
-
-    .card:hover{
-      transform: translateY(-4px);
-      border-color: rgba(124,255,218,.22);
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(90,162,255,.18), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
-    }
-
-    .cardTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      position:relative;
-      z-index:1;
-      margin-bottom: 10px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      color:#dbe7ff;
-    }
-
-    .cardTitle{
-      margin:0;
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-      position:relative;
-      z-index:1;
-    }
-
-    .cardText{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-      position:relative;
-      z-index:1;
-    }
-
-    /* Buy section: contract box + copy button */
-    .contractWrap{
-      margin-top: 16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:stretch;
-    }
-
-    .contractBox{
-      flex: 1 1 520px;
-      min-width: 260px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      background: rgba(0,0,0,.26);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow2);
-      font-family: var(--mono);
-      color:#dbe7ff;
-      word-break: break-all;
-    }
-
-    .smallNote{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .linkCard{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .linkRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      position:relative;
-      z-index:1;
-    }
-
-    /* Footer */
-    footer{
-      margin-top: 92px;
-      padding: 28px 0 14px;
-      color: rgba(255,255,255,.55);
-      font-size: 12px;
-      line-height: 1.6;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .footerGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-      align-items:start;
-    }
-    .disclaimer{
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(10px);
-      color: rgba(255,255,255,.6);
-    }
-
-    @media (max-width: 980px){
-      .hero{ grid-template-columns:1fr; }
-      .heroArt{ justify-content:center; min-height: unset; }
-      .heroBanner{ justify-content:center; }
-      .grid3{ grid-template-columns: 1fr; }
-      .sectionHead{ flex-direction:column; align-items:flex-start; }
-      nav{ display:none; }
-      .footerGrid{ grid-template-columns:1fr; }
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="topFade" aria-hidden="true"></div>
 
-  <header>
-    <div class="navRow">
-      <a class="brand" href="#top" aria-label="Comet Coin home">
-        <img src="images/logo.svg" alt="Comet Coin logo">
-        <span>Comet Coin <span style="opacity:.8;">($COMC)</span></span>
-      </a>
+<div class="container">
 
-      <nav aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#buy">How to Buy</a>
-        <a href="#community">Community</a>
-      </nav>
+<header>
 
-      <div class="navCtas">
-        <a class="btn" href="#buy">How to Buy</a>
-        <a class="btn primary" href="#community">Join</a>
-      </div>
-    </div>
-  </header>
+<div class="logo">
+<img src="./images/Logo.svg">
+Comet Coin ($COMC)
+</div>
 
-  <main id="top" class="container">
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <div class="heroText">
-        <h1>Early. Loud.<br>Always building.</h1>
-        <p>
-          Comet Coin ($COMC) is a community-driven Solana token focused on steady growth,
-          visibility, and long-term momentum.
-        </p>
+<nav>
+<a href="#about">About</a>
+<a href="#buy">Buy</a>
+<a href="#community">Community</a>
+</nav>
 
-        <div class="heroBadges">
-          <span class="badge"><span class="dot"></span> Built on Solana</span>
-          <span class="badge"><span class="dot"></span> Community-first</span>
-          <span class="badge"><span class="dot"></span> Momentum culture</span>
-        </div>
+</header>
 
-        <div class="heroCtas">
-          <a class="btn primary" id="heroBuy" target="_blank" rel="noreferrer">Buy $COMC</a>
-          <a class="btn" href="#buy">Contract</a>
-          <a class="btn" id="heroChart" target="_blank" rel="noreferrer">Chart</a>
-        </div>
+<!-- HERO -->
 
-        <!-- LIVE STATS -->
-        <div class="liveStats" aria-label="Live token stats">
-          <div class="stat">
-            <span>Price</span>
-            <b id="statPrice">$—</b>
-            <small id="statUpdated">Updating…</small>
-          </div>
-          <div class="stat">
-            <span>Market Cap / FDV</span>
-            <b id="statMcap">$—</b>
-            <small id="statSource">Source: Dexscreener</small>
-          </div>
-        </div>
+<div class="hero">
 
-        <div class="heroBanner">
-          <img src="images/header.png"
-               alt=""
-               onerror="this.style.display='none'">
-        </div>
-      </div>
+<div class="hero-text">
 
-      <div class="heroArt">
-        <img src="images/hero.png" alt="Comet visual">
-      </div>
-    </section>
+<h1>Early. Loud.<br>Always building.</h1>
 
-    <!-- ABOUT -->
-    <section id="about" class="section" aria-label="About">
-      <div class="sectionHead">
-        <h2>About</h2>
-        <p class="sectionSub">
-          A clean, community-forward project. The goal is simple: be visible, be consistent, and keep building.
-        </p>
-      </div>
+<p>
+Comet Coin ($COMC) is a community-driven Solana token focused on growth and momentum.
+</p>
 
-      <div class="grid3">
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">Built in public</h3>
-            <span class="chip">Transparency</span>
-          </div>
-          <p class="cardText">
-            Clear updates, consistent presence, and steady iteration. Projects win by showing up.
-          </p>
-        </div>
+<a class="btn" id="buyBtn" target="_blank">Buy $COMC</a>
+<a class="btn" id="chartBtn" target="_blank">Chart</a>
 
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">Fast on Solana</h3>
-            <span class="chip">Low fees</span>
-          </div>
-          <p class="cardText">
-            Powered by Solana for speed and scalability — optimized for quick swaps and smooth UX.
-          </p>
-        </div>
+<div class="liveStats">
 
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">Momentum culture</h3>
-            <span class="chip">Consistency</span>
-          </div>
-          <p class="cardText">
-            Community + visibility + time. That’s the compounding loop we focus on.
-          </p>
-        </div>
-      </div>
-    </section>
+<div class="stat">
+<span>Price</span>
+<b id="price">$—</b>
+</div>
 
-    <!-- HOW TO BUY -->
-    <section id="buy" class="section" aria-label="How to buy">
-      <div class="sectionHead">
-        <h2>How to Buy</h2>
-        <p class="sectionSub">
-          Always verify the contract address from official Comet Coin channels before swapping.
-        </p>
-      </div>
+<div class="stat">
+<span>Market Cap</span>
+<b id="mcap">$—</b>
+</div>
 
-      <div class="grid3">
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">1) Get a wallet</h3>
-            <span class="chip">Pump.Fun</span>
-          </div>
-          <p class="cardText">The easiest way is via Pump.Fun, although searching for "Comet Coin" on some exchanges can return $COMC. Make sure to always compare to the price and volume on this site. </p>
-        </div>
+</div>
 
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">2) Add SOL</h3>
-            <span class="chip">Fees</span>
-          </div>
-          <p class="cardText">Send SOL to your wallet for swaps and network fees.</p>
-        </div>
+<div class="heroBanner">
+<img src="./images/hero.png">
+</div>
 
-        <div class="card">
-          <div class="cardTop">
-            <h3 class="cardTitle">3) Swap for $COMC</h3>
-            <span class="chip">Verify CA</span>
-          </div>
-          <p class="cardText">Purchase $COMC.</p>
-        </div>
-      </div>
-      <div class="smallNote">
-        Tip: Ignore random DMs. Only use links pinned on official Comet Coin profiles.
-      </div>
-    </section>
+</div>
 
-    <!-- COMMUNITY -->
-    <section id="community" class="section" aria-label="Community">
-      <div class="sectionHead">
-        <h2>Community</h2>
-        <p class="sectionSub">
-          Join the channels below for announcements, updates, and community events.
-        </p>
-      </div>
+<div>
+<img src="./images/hero.png">
+</div>
 
-      <div class="grid3">
-        <div class="card linkCard">
-          <div class="cardTop">
-            <h3 class="cardTitle">Twitter / X</h3>
-            <span class="chip">Updates</span>
-          </div>
-          <p class="cardText">Daily posts, progress updates, and community highlights.</p>
-          <div class="linkRow">
-            <a class="btn primary" id="twitterFollow" target="_blank" rel="noreferrer">Follow</a>
-            <a class="btn" id="twitterPinned" target="_blank" rel="noreferrer">Pinned links</a>
-          </div>
-        </div>
+</div>
 
-        <div class="card linkCard">
-          <div class="cardTop">
-            <h3 class="cardTitle">Discord</h3>
-            <span class="chip">Home base</span>
-          </div>
-          <p class="cardText">Chat, announcements, roles, and holder community.</p>
-          <div class="linkRow">
-            <a class="btn primary" id="discordJoin" target="_blank" rel="noreferrer">Join</a>
-            <a class="btn" id="discordRules" target="_blank" rel="noreferrer">Rules</a>
-          </div>
-        </div>
+<!-- ABOUT -->
 
-        <div class="card linkCard">
-          <div class="cardTop">
-            <h3 class="cardTitle">Charts</h3>
-            <span class="chip">Track</span>
-          </div>
-          <p class="cardText">Price, liquidity, and holders — always verify the pair.</p>
-          <div class="linkRow">
-            <a class="btn primary" id="chartDex" target="_blank" rel="noreferrer">Dexscreener</a>
-            <a class="btn" id="buySolscan" target="_blank" rel="noreferrer">Solscan</a>
-            <a class="btn" id="chartPump" target="_blank" rel="noreferrer">Pump.fun</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="about" class="section">
 
-    <footer>
-      <div class="footerGrid">
-        <div class="disclaimer">
-          <strong style="color:#fff;">Disclaimer</strong><br>
-          This website is for informational purposes only and does not constitute financial advice.
-          Cryptocurrencies are volatile and risky. Do your own research.
-          <br><br>
-          Comet Coin is an independent project built on the Solana blockchain and is not affiliated with or endorsed by Solana.
-        </div>
+<h2>About</h2>
 
-        <div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <img src="images/logo128.svg" alt="Comet Coin mark" style="width:28px; height:28px; opacity:.9;">
-            <strong style="color:#fff;">Comet Coin ($COMC)</strong>
-          </div>
-          <div>© <span id="year"></span> Comet Coin. All rights reserved.</div>
-        </div>
-      </div>
-    </footer>
-  </main>
+<div class="grid">
 
-  <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+<div class="card">
+Built in public. Community driven.
+</div>
 
-    // Apply LINKS variables everywhere
-    const setHref = (id, url) => {
-      const el = document.getElementById(id);
-      if (el && url) el.href = url;
-    };
+<div class="card">
+Powered by Solana.
+</div>
 
-    setHref("heroBuy", LINKS.BUY);
-    setHref("heroChart", LINKS.DEXSCREENER);
+<div class="card">
+Focused on growth and visibility.
+</div>
 
-    setHref("buyDex", LINKS.DEXSCREENER);
-    setHref("buySolscan", LINKS.SOLSCAN);
+</div>
 
-    setHref("twitterFollow", LINKS.TWITTER);
-    setHref("twitterPinned", LINKS.PINNED);
+</div>
 
-    setHref("discordJoin", LINKS.DISCORD);
-    setHref("discordRules", LINKS.RULES);
+<!-- COMMUNITY -->
 
-    setHref("chartDex", LINKS.DEXSCREENER);
-    setHref("chartPump", LINKS.PUMPFUN);
+<div id="community" class="section">
 
-    // ---- LIVE STATS (Dexscreener public API; no key needed) ----
-    const fmtUSD = (n, max=10) => {
-      const num = Number(n);
-      if (!isFinite(num)) return "$—";
-      if (num >= 1) return "$" + num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-      if (num === 0) return "$0";
-      return "$" + num.toFixed(max);
-    };
+<h2>Community</h2>
 
-    async function updateStats(){
-      const priceEl = document.getElementById("statPrice");
-      const mcapEl = document.getElementById("statMcap");
-      const updatedEl = document.getElementById("statUpdated");
-      const sourceEl = document.getElementById("statSource");
+<div class="grid">
 
-      try{
-        const url = `https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`;
-        const res = await fetch(url, { method: "GET" });
-        const json = await res.json();
+<div class="card">
+<a id="twitterBtn" target="_blank">Twitter</a>
+</div>
 
-        const pair = json?.pairs?.[0];
-        const priceUsd = Number(pair?.priceUsd ?? 0);
+<div class="card">
+<a id="discordBtn" target="_blank">Discord</a>
+</div>
 
-        const fdv = Number(pair?.fdv ?? 0);
-        const est = fdv > 0 ? fdv : (priceUsd * Number(TOTAL_SUPPLY));
+<div class="card">
+<a id="solscanBtn" target="_blank">Solscan</a>
+</div>
 
-        if (priceEl) priceEl.textContent = fmtUSD(priceUsd, 10);
-        if (mcapEl)  mcapEl.textContent  = est > 0 ? ("$" + est.toLocaleString(undefined, { maximumFractionDigits: 0 })) : "$0";
+</div>
 
-        if (updatedEl){
-          const d = new Date();
-          updatedEl.textContent = "Updated " + d.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
-        }
-        if (sourceEl) sourceEl.textContent = "Source: Dexscreener";
-      } catch(err){
-        console.log("Stats error:", err);
-        if (updatedEl) updatedEl.textContent = "Update failed";
-        if (sourceEl) sourceEl.textContent = "Source: —";
-      }
-    }
+</div>
 
-    updateStats();
-    setInterval(updateStats, 10000);
-  </script>
+<footer>
+© 2026 Comet Coin
+</footer>
+
+</div>
+
+<script>
+
+/* SET LINKS */
+
+document.getElementById("buyBtn").href = LINKS.BUY;
+document.getElementById("chartBtn").href = LINKS.DEXSCREENER;
+document.getElementById("twitterBtn").href = LINKS.TWITTER;
+document.getElementById("discordBtn").href = LINKS.DISCORD;
+document.getElementById("solscanBtn").href = LINKS.SOLSCAN;
+
+/* LIVE STATS */
+
+function format(n){
+if(!n) return "$0";
+if(n>=1) return "$"+n.toLocaleString();
+return "$"+n.toFixed(10);
+}
+
+async function update(){
+
+try{
+
+const res =
+await fetch(
+`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`
+);
+
+const json = await res.json();
+
+const pair = json.pairs[0];
+
+const price = Number(pair.priceUsd);
+const mcap =
+pair.fdv ?
+Number(pair.fdv) :
+price * TOTAL_SUPPLY;
+
+document.getElementById("price").textContent = format(price);
+document.getElementById("mcap").textContent =
+"$"+mcap.toLocaleString();
+
+}
+catch(e){}
+
+}
+
+update();
+setInterval(update,10000);
+
+</script>
+
 </body>
 </html>
