@@ -21,18 +21,22 @@
     const LINKS = {
       BUY: "https://pump.fun/coin/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
       PUMPFUN: "https://pump.fun/coin/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
-      DEXSCREENER: "https://dexscreener.com/solana/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
+
+      // ✅ Swap Dexscreener -> GeckoTerminal
+      GECKOTERMINAL: "https://www.geckoterminal.com/solana/pools/4Lnkiks1PT4UgKE2Z7cboDFyir7moRA4DzdwBzkyGEwZ",
       SOLSCAN: "https://solscan.io/token/6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump",
+
       TWITTER: "https://x.com/CometCoinCOMC",
       DISCORD: "https://discord.gg/vGhK2qbmpc",
       RULES: "#",
       PINNED: "#",
     };
 
-    // Used for Dexscreener API + embeds (solana pair/token id)
-    const PAIR_OR_TOKEN_ID = "6rkLsd51cRDp4SDVbQjY8enk8zPNjQkA5ap4fLxppump";
+    // ✅ GeckoTerminal pool id from your link
+    const POOL_ID = "4Lnkiks1PT4UgKE2Z7cboDFyir7moRA4DzdwBzkyGEwZ";
+    const NETWORK = "solana";
 
-    // Used only if FDV/marketcap missing (Dexscreener usually provides fdv)
+    // Used only if marketcap/fdv missing
     const TOTAL_SUPPLY = 1000000000;
   </script>
 
@@ -394,7 +398,7 @@
       50%{ transform: translateY(-16px); }
     }
 
-    /* ===== Single Dexscreener embed box (chart + txns inside) ===== */
+    /* ===== Single GeckoTerminal embed box ===== */
     .chartSection{
       margin-top: 18px;
       border-radius: 18px;
@@ -410,7 +414,7 @@
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      padding: 10px 12px; /* smaller header */
+      padding: 10px 12px;
       border-bottom: 1px solid rgba(255,255,255,.08);
       color: rgba(255,255,255,.72);
       font-size: 12px;
@@ -419,7 +423,6 @@
 
     .chartGrid{ display:block; }
 
-    /* Smaller, but tall enough for chart + txns panel */
     .chartFrame{
       width:100%;
       height: clamp(520px, 72vh, 700px);
@@ -535,8 +538,6 @@
       .grid3{ grid-template-columns: 1fr; }
       .sectionHead{ flex-direction:column; align-items:flex-start; }
       .statsRow{ grid-template-columns: 1fr; max-width: unset; }
-
-      /* give embed room on mobile */
       .chartFrame{ height: 70vh; }
     }
 
@@ -617,7 +618,7 @@
           <div class="stat">
             <span>Market Cap / FDV</span>
             <b id="statMcap">$—</b>
-            <small id="statSource">Source: Dexscreener</small>
+            <small id="statSource">Source: GeckoTerminal</small>
           </div>
         </div>
 
@@ -631,16 +632,16 @@
       </div>
     </section>
 
-    <!-- SINGLE DEXSCREENER EMBED -->
+    <!-- SINGLE GECKOTERMINAL EMBED -->
     <section class="chartSection" aria-label="Live chart">
       <div class="chartHead">
         <span>Live Chart</span>
-        <span style="opacity:.75;">Price + Txns inside</span>
+        <span style="opacity:.75;">GeckoTerminal embed</span>
       </div>
 
       <div class="chartGrid">
         <div class="chartFrame">
-          <iframe id="chartIframe" title="Dexscreener chart" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <iframe id="chartIframe" title="GeckoTerminal chart" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-write"></iframe>
         </div>
       </div>
     </section>
@@ -707,7 +708,7 @@
           </p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
             <a class="btn primary" id="buyPump" target="_blank" rel="noreferrer">Open Pump.fun</a>
-            <a class="btn" id="buyDex" target="_blank" rel="noreferrer">Dexscreener</a>
+            <a class="btn" id="buyGecko" target="_blank" rel="noreferrer">GeckoTerminal</a>
           </div>
         </div>
 
@@ -775,9 +776,9 @@
             <h3 class="cardTitle">Charts</h3>
             <span class="chip">Track</span>
           </div>
-          <p class="cardText">Price, liquidity, and holders — always verify the pair.</p>
+          <p class="cardText">Price, liquidity, and holders — always verify the pool.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-            <a class="btn primary" id="chartDex" target="_blank" rel="noreferrer">Dexscreener</a>
+            <a class="btn primary" id="chartGecko" target="_blank" rel="noreferrer">GeckoTerminal</a>
             <a class="btn" id="chartSolscan" target="_blank" rel="noreferrer">Solscan</a>
             <a class="btn" id="chartPump" target="_blank" rel="noreferrer">Pump.fun</a>
           </div>
@@ -805,10 +806,10 @@
     };
 
     setHref("heroBuy", LINKS.BUY);
-    setHref("heroChart", LINKS.DEXSCREENER);
+    setHref("heroChart", LINKS.GECKOTERMINAL);
 
     setHref("buyPump", LINKS.PUMPFUN);
-    setHref("buyDex", LINKS.DEXSCREENER);
+    setHref("buyGecko", LINKS.GECKOTERMINAL);
     setHref("buySolscan", LINKS.SOLSCAN);
 
     setHref("twitterFollow", LINKS.TWITTER);
@@ -817,7 +818,7 @@
     setHref("discordJoin", LINKS.DISCORD);
     setHref("discordRules", LINKS.RULES);
 
-    setHref("chartDex", LINKS.DEXSCREENER);
+    setHref("chartGecko", LINKS.GECKOTERMINAL);
     setHref("chartSolscan", LINKS.SOLSCAN);
     setHref("chartPump", LINKS.PUMPFUN);
 
@@ -848,11 +849,13 @@
     closeMenu?.addEventListener("click", (e) => { e.preventDefault(); closeAll(); });
     document.querySelectorAll(".mLink").forEach(l => l.addEventListener("click", closeAll));
 
-    // ---- Embed: Single Dexscreener (chart + txns inside) ----
+    // ---- Embed: GeckoTerminal iframe ----
+    // Embed parameters documented by GeckoTerminal embed generator :contentReference[oaicite:1]{index=1}
     const chartIframe = document.getElementById("chartIframe");
     if (chartIframe) {
       chartIframe.src =
-        `https://dexscreener.com/solana/${PAIR_OR_TOKEN_ID}?embed=1&theme=dark&info=1`;
+        `https://www.geckoterminal.com/${NETWORK}/pools/${POOL_ID}` +
+        `?embed=1&info=1&swaps=1&light_chart=0&chart_type=price&resolution=1h&bg_color=050713`;
     }
 
     // ---- PRICE FORMAT: "$0.0₅32630" style ----
@@ -883,7 +886,8 @@
       return `$0.0${toSubscript(subCount)}${rest}`;
     }
 
-    // ---- LIVE STATS (Dexscreener public API; no key needed) ----
+    // ---- LIVE STATS (GeckoTerminal public API; no key) ----
+    // Base URL documented in GeckoTerminal API guide :contentReference[oaicite:2]{index=2}
     async function updateStats(){
       const priceEl = document.getElementById("statPrice");
       const mcapEl = document.getElementById("statMcap");
@@ -891,26 +895,32 @@
       const sourceEl = document.getElementById("statSource");
 
       try{
-        const url = `https://api.dexscreener.com/latest/dex/tokens/${PAIR_OR_TOKEN_ID}`;
-        const res = await fetch(url, { method: "GET" });
+        const url = `https://api.geckoterminal.com/api/v2/networks/${NETWORK}/pools/${POOL_ID}`;
+        const res = await fetch(url, { method: "GET", headers: { "accept": "application/json" } });
+        if (!res.ok) throw new Error("HTTP " + res.status);
         const json = await res.json();
 
-        const pair = json?.pairs?.[0];
-        const priceUsd = Number(pair?.priceUsd ?? 0);
-        const fdv = Number(pair?.fdv ?? 0);
-        const est = fdv > 0 ? fdv : (priceUsd * Number(TOTAL_SUPPLY));
+        const attrs = json?.data?.attributes || {};
+        // Common pool fields seen in GeckoTerminal API responses include:
+        // base_token_price_usd, market_cap_usd, fdv_usd (market cap can be null; fdv is often available) :contentReference[oaicite:3]{index=3}
+        const priceUsd = Number(attrs?.base_token_price_usd ?? attrs?.price_usd ?? 0);
+        const marketCap = Number(attrs?.market_cap_usd ?? 0);
+        const fdv = Number(attrs?.fdv_usd ?? attrs?.fdv ?? 0);
+        const est = (marketCap > 0 ? marketCap : (fdv > 0 ? fdv : (priceUsd * Number(TOTAL_SUPPLY))));
 
         if (priceEl) priceEl.innerHTML = fmtPriceSub(priceUsd, 5);
 
         if (mcapEl) {
-          mcapEl.textContent = est > 0 ? ("$" + est.toLocaleString(undefined, { maximumFractionDigits: 0 })) : "$0";
+          mcapEl.textContent = est > 0
+            ? ("$" + est.toLocaleString(undefined, { maximumFractionDigits: 0 }))
+            : "$0";
         }
 
         if (updatedEl){
           const d = new Date();
           updatedEl.textContent = "Updated " + d.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
         }
-        if (sourceEl) sourceEl.textContent = "Source: Dexscreener";
+        if (sourceEl) sourceEl.textContent = "Source: GeckoTerminal";
       }catch(err){
         console.log("Stats error:", err);
         if (updatedEl) updatedEl.textContent = "Update failed";
@@ -923,4 +933,3 @@
   </script>
 </body>
 </html>
-
